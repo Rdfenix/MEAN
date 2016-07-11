@@ -1,0 +1,5 @@
+//var controller = require('../controllers/contato');
+module.exports = function(app){
+  var controller = app.controllers.contato;
+  app.get('/contatos', controller.listaContatos);
+};
