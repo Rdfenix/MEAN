@@ -1,0 +1,19 @@
+{
+  "name": "contatooh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Rudnei Carlos de Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "express-async-router": "^0.1.10",
+    "router-express": "^1.3.11"
+  }
+}
