@@ -1,4 +1,6 @@
 var express = require('express');
+var load = require('express-load');
+//var home  = require('../app/routes/home');
 
 module.exports = function(){
   var app = express();
@@ -9,9 +11,14 @@ module.exports = function(){
 
   //middleware
   app.use(express.static('./public'));
-  
-  require('../app/routes/home')(app);
 
+  //endereçando a variavel de rotas
+  //home(app);
+
+  load('models', {cwd: 'app'})
+  .then('controllers')
+  .then('routes')
+  .into(app);
 
   return app;
 };
