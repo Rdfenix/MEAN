@@ -24,7 +24,7 @@ module.exports = function(){
     controller.removerContato = function(req, res){
       var idCOntato = req.params.id;
       contatos = contatos.filter(function(contatos){
-          return contato._id != idCOntato;
+          return contatos._id != idCOntato;
       });
       res.status(204).end();
       console.log("API: Remove Contato: " + idCOntato);
