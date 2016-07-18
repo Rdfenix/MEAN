@@ -1,9 +1,11 @@
 <div class="jumbotron">
+    <p ng-show="mensagem.texto">{{mensagem.texto}}</p>
     <h1 class="text-center">Bem Vindo ao Contattoh</h1>
 </div>
 <button class="btn btn-primary" ng-click="incrementa()">Novo</button>
 <input type="search" placeholder="parte do nome" ng-model="filtro">
-<p>Contatos Cadastrodos: {{contatos.length}}</p>
+<p ng-show="contatos.length">Contatos Cadastrodos: {{contatos.length}}</p>
+<p class="text-info" ng-hide="contatos.length">Não há contatos cadastrados.</p>
 <div class="table-responsive">
     <table class="table table-hover">
         <tr>
