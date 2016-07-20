@@ -1,17 +1,21 @@
 var contatos = angular.module('contatooh');
 
-contatos.controller('ContatosController', function($scope){
+contatos.controller('ContatosController', function($scope, $http){
+    $scope.contatos = [];
     $scope.total = 0;
+    $scope.filtro = '';
+
     $scope.incrementa = function(){
       $scope.total++;
     };
+    //retorna os dados vindos do servidor - nesse caso o express.
+    $http.get('/contatos')
+    .success(function(data){
+      $scope.contatos = data;
+    })
+    .error(function(statusText){
+      console.log("Não foi possivel obeter a lista de contatos");
+      console.log(statusText);
+    });
 
-    $scope.contatos = [
-      {_id: 1, nome: "Rudnei Carlos de Oliveira", email: "rudnei@email.com.br"},
-      {_id: 2, nome: "Marcos Roberto de Oliveira", email: "marcos@email.com.br"},
-      {_id: 3, nome: "Ana Paula de Oliveira", email: "ana.paula@email.com.br"},
-      {_id: 4, nome: "Roosevelt Celso de Oliveira", email: "roosevelt@email.com.br"}
-    ];
-
-    $scope.filtro = '';
 });
