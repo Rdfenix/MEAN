@@ -1,10 +1,10 @@
 //var model = require('../models/contato');
 
 var contatos = [
-  {_id:1, nome:'Rudnei Carlos de Oliveira', email:'rudnei.oliveira@email.com.br'},
-  {_id:2, nome:'Marcos Roberto de Oliveira', email:'marcos.oliveira@email.com.br'},
-  {_id:3, nome:'Ana Paula de Oliveira', email:'ana.paula.oliveira@email.com.br'},
-  {_id:4, nome:'Roosevelt Celso de Oliveira', email:'roosevelt.celso.oliveira@email.com.br'}
+  {_id: 1, nome: "Rudnei Carlos de Oliveira", email: "rudnei@email.com.br"},
+  {_id: 2, nome: "Marcos Roberto de Oliveira", email: "marcos@email.com.br"},
+  {_id: 3, nome: "Ana Paula de Oliveira", email: "ana.paula@email.com.br"},
+  {_id: 4, nome: "Roosevelt Celso de Oliveira", email: "roosevelt@email.com.br"}
 ];
 
 module.exports = function(){
@@ -22,7 +22,7 @@ module.exports = function(){
       return contato._id == idContato;
     })[0];
 
-    contato ? res.json(contatos) : res.status(404).send('Contato nao encontrado');
+    contato ? res.json(contato) : res.status(404).send('Contato nao encontrado');
   };
   return controller;
 };
