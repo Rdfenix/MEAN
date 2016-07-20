@@ -18,12 +18,23 @@ module.exports = function(){
 
   // Captura o contato
   controller.obtemContato = function(req, res){
-    var idContato = req.params.id;
+    var idContato = req.params.id;//acessa os parametros enviados na requisição.
     var contato = contatos.filter(function(contato){
       return contato._id == idContato;
     })[0];
 
     contato ? res.json(contato) : res.status(404).send('Contato nao encontrado');
   };
+
+  //remove contato
+  controller.removeContato = function(req, res){
+    var idContato = req.params.id; //acessa os parametros enviados na requisição.
+    console.log("Api, remove contato" + idContato);
+    contatos = contatos.filter(function(contato){
+        return contato._id != idContato;
+    });
+    res.status(204).end(); // status 204  - No content
+  };
+
   return controller;
 };

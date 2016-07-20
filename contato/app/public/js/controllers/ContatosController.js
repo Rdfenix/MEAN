@@ -1,21 +1,31 @@
 var contatos = angular.module('contatooh');
 
-contatos.controller('ContatosController', function($scope, $http){
+contatos.controller('ContatosController', function($scope, $resource){
     $scope.contatos = [];
-    $scope.total = 0;
     $scope.filtro = '';
 
-    $scope.incrementa = function(){
-      $scope.total++;
+    var Data = $resource('/contatos/:id');
+
+    function buscaContatos(){
+        Data.query(function(contatos){
+            $scope.contatos = contatos;
+        },
+      function(erro){
+        console.log("Não foi possivel obter a lista de contatos");
+        console.log(erro);
+      });
+    }
+
+    buscaContatos();
+
+    $scope.remove = function(contato){
+      console.log(contato);
+      Data.delete({id: contato._id},
+      buscaContatos,
+      function(erro){
+        console.log("Nao foi possivel remover o contato");
+        console.log(erro);
+      });
     };
-    //retorna os dados vindos do servidor - nesse caso o express.
-    $http.get('/contatos')
-    .success(function(data){
-      $scope.contatos = data;
-    })
-    .error(function(statusText){
-      console.log("Não foi possivel obeter a lista de contatos");
-      console.log(statusText);
-    });
 
 });
