@@ -3,6 +3,7 @@ var contatos = angular.module('contatooh');
 contatos.controller('ContatosController', function($scope, $resource){
     $scope.contatos = [];
     $scope.filtro = '';
+    $scope.mensagem = {texto: ''};
 
     var Data = $resource('/contatos/:id');
 
@@ -13,6 +14,7 @@ contatos.controller('ContatosController', function($scope, $resource){
       function(erro){
         console.log("Não foi possivel obter a lista de contatos");
         console.log(erro);
+        $scope.mensagem = {texto: "Não foi possivel obter a lista de contatos"};
       });
     }
 
@@ -25,6 +27,7 @@ contatos.controller('ContatosController', function($scope, $resource){
       function(erro){
         console.log("Nao foi possivel remover o contato");
         console.log(erro);
+        $scope.mensagem = {texto: "Nao foi possivel remover o contato"};
       });
     };
 
