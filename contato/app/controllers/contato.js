@@ -30,6 +30,7 @@ var contatos = [
 
 module.exports = function () {
     var controller = {};
+    var ID_CONTATO_INC = 5;
 
     // Lista Contatos
     controller.listarContatos = function (req, res) {
@@ -55,6 +56,28 @@ module.exports = function () {
         });
         res.status(204).end(); // status 204  - No content
     };
+
+    controller.salvaContato = function (req, res) {
+        var contato = req.body; //acessa o corpo da mensagem.
+        contato = contato._id ? atualiza(contato) : adiciona(contato);
+        res.json(contato);
+    };
+
+    function adiciona(contatoNovo) {
+        contatoNovo._id = ++ID_CONTATO_INC;
+        contatos.push(contatoNovo);
+        return contatoNovo;
+    }
+
+    function atualiza(contatoAlterar) {
+        contatos = contatos.map(function (contato) {
+            if (contato._id == contatoAlterar._id) {
+                contato = contatoAlterar;
+            }
+            return contato;
+        });
+        return contatoAlterar;
+    }
 
     return controller;
 };
