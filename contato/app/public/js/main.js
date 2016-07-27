@@ -1,11 +1,15 @@
-var main = angular.module('contatooh', ['ngRoute', 'ngResource']);
+var app = angular.module('contatooh', ['ngRoute', 'ngResource']);
 
-main.config(function ($routeProvider) {
+app.config(function ($routeProvider) {
     $routeProvider.when('/contatos', {
         templateUrl: 'partials/contatos.html',
         controller: 'ContatosController'
     });
-    $routeProvider.when('/contatos/:contatoId', {
+    $routeProvider.when('/contato/:contatoId', {
+        templateUrl: 'partials/contato.html',
+        controller: 'ContatoController'
+    });
+    $routeProvider.when('/contato', {
         templateUrl: 'partials/contato.html',
         controller: 'ContatoController'
     });
